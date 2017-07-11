@@ -1,0 +1,7 @@
+{
+  "name": "workspace-2",
+  "version": "1.0.0",
+  "dependencies": {
+    "workspace-3": "1.0.0"
+  }
+}

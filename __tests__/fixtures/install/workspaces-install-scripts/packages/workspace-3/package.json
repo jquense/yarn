@@ -1,0 +1,14 @@
+{
+  "name": "workspace-3",
+  "version": "1.0.0",
+  "scripts": {
+    "prepublish": "cpy src.js prepublish.js",
+    "prepublishOnly": "cpy src.js prepublishOnly.js",
+    "prepare": "cpy src.js prepare.js",
+    "preinstall": "cpy src.js preinstall.js",
+    "postinstall": "cpy src.js postinstall.js"
+  },
+  "dependencies": {
+    "repeat-string": "1.6.1"
+  }
+}

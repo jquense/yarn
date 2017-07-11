@@ -157,6 +157,17 @@ test.concurrent('install should prioritize non workspace dependency at root over
   });
 });
 
+test.concurrent('install should run local install scripts', (): Promise<void> => {
+  return runInstall({}, 'workspaces-install-scripts', async (config): Promise<void> => {
+    expect(await fs.exists(path.join(config.cwd, 'node_modules', 'workspace-3', 'src.js'))).toBe(true);
+    expect(await fs.exists(path.join(config.cwd, 'node_modules', 'workspace-3', 'prepublish.js'))).toBe(true);
+    expect(await fs.exists(path.join(config.cwd, 'node_modules', 'workspace-3', 'prepublishOnly.js'))).toBe(true);
+    expect(await fs.exists(path.join(config.cwd, 'node_modules', 'workspace-3', 'prepare.js'))).toBe(true);
+    expect(await fs.exists(path.join(config.cwd, 'node_modules', 'workspace-3', 'preinstall.js'))).toBe(true);
+    expect(await fs.exists(path.join(config.cwd, 'node_modules', 'workspace-3', 'postinstall.js'))).toBe(true);
+  });
+});
+
 test.concurrent('install should install subedependencies of workspaces', (): Promise<void> => {
   // the tricky part is that isarray is a subdependency of left-pad that is not referenced in the root
   // but another workspace
